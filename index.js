@@ -1,12 +1,9 @@
-// Add items with keyboard / mouse
 function addItems() {
     $('#js-shopping-list-form').on('submit', function(event) {
         // Prevent default form submission
         event.preventDefault();
-
         // Prevent submitting an empty input
         if ($('#shopping-list-entry').val().length === 0 ) {return};
-        
         // Append item to shopping list
         $('.shopping-list').append(
             `<li>
@@ -23,39 +20,34 @@ function addItems() {
     });
 }
 
-// Permanently delete items by pressing 'delete' button
 function deleteItems() {
     $('.shopping-list').on('click', 'button.shopping-item-delete', function() {
-        this.closest('li').remove();
+        $(this).closest('li').remove();
     });
  }
 
- // toggleClass(): MANIPULATE.  Toggle a class on or off an element.  For example:
-/* 
-TOGGLE ON
-<div class="tumble">Some text.</div>
-$( "div.tumble" ).toggleClass( "bounce" )
-<div class="tumble bounce">Some text.</div>
-TOGGLE OFF
-$( "div.tumble" ).toggleClass( "bounce" )
-<div class="tumble">Some text.</div>
-*/
-
-
-// Toggle 'check' button
 
 function toggleItems() {
     $('.shopping-list').on('click', 'button.shopping-item-toggle', function() {
-        this.closest('li').remove();
+        // Problem: span is targeted but class is not toggling.  Works for 'li'
+        $(this).closest('span').toggleClass('shopping-item__checked');
     });
 }
 
-
-
+/*
+$('.shopping-item-toggle').click(function() {
+    if ($(this).closest('li').is(".shopping-item__checked")){
+      $(this).closest('li').removeClass("shopping-item__checked");
+    } else {
+      $(this).closest('li').addClass("shopping-item__checked");
+    }
+  });
+*/
 
 function shoppingHandler() {
     addItems();
     deleteItems();
+    toggleItems();
 }
 
 $(shoppingHandler);

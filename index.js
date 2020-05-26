@@ -26,23 +26,12 @@ function deleteItems() {
     });
  }
 
-
 function toggleItems() {
     $('.shopping-list').on('click', 'button.shopping-item-toggle', function() {
         // Problem: span is targeted but class is not toggling.  Works for 'li'
         $(this).closest('span').toggleClass('shopping-item__checked');
     });
 }
-
-/*
-$('.shopping-item-toggle').click(function() {
-    if ($(this).closest('li').is(".shopping-item__checked")){
-      $(this).closest('li').removeClass("shopping-item__checked");
-    } else {
-      $(this).closest('li').addClass("shopping-item__checked");
-    }
-  });
-*/
 
 function shoppingHandler() {
     addItems();

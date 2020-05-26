@@ -1,9 +1,11 @@
 function addItems() {
-    $('#js-shopping-list-form').on('submit', function(event) {
+    $('#js-shopping-list-form').on('submit', function (event) {
         // Prevent default form submission
         event.preventDefault();
         // Prevent submitting an empty input
-        if ($('#shopping-list-entry').val().length === 0 ) {return};
+        if ($('#shopping-list-entry').val().length === 0) {
+            return
+        };
         // Append item to shopping list
         $('.shopping-list').append(
             `<li>
@@ -21,15 +23,14 @@ function addItems() {
 }
 
 function deleteItems() {
-    $('.shopping-list').on('click', 'button.shopping-item-delete', function() {
+    $('.shopping-list').on('click', 'button.shopping-item-delete', function () {
         $(this).closest('li').remove();
     });
- }
+}
 
 function toggleItems() {
-    $('.shopping-list').on('click', 'button.shopping-item-toggle', function() {
-        // Problem: span is targeted but class is not toggling.  Works for 'li'
-        $(this).closest('span').toggleClass('shopping-item__checked');
+    $('.shopping-list').on('click', 'button.shopping-item-toggle', function () {
+        $(this).closest('li').find('span.shopping-item').toggleClass('shopping-item__checked');
     });
 }
 
